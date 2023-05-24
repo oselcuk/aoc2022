@@ -1,9 +1,5 @@
 use std::{collections::HashSet, env, fs};
 
-fn histogram(sack: &str) -> HashSet<char> {
-    sack.chars().collect()
-}
-
 fn get_commons(sacks: &[&str]) -> char {
     sacks
         .into_iter()
@@ -13,11 +9,6 @@ fn get_commons(sacks: &[&str]) -> char {
         .into_iter()
         .next()
         .unwrap()
-    // sacks
-    //     .into_iter()
-    //     .map(|sack| HashSet::from_iter(sack.chars()))
-    //     .reduce(|left, right| HashSet::from_iter(left.intersection(&right).cloned().collect()));
-    // 'a'
 }
 
 fn get_common(sack: &str) -> char {

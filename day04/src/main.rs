@@ -1,11 +1,38 @@
 use std::{env, fs};
 
+fn parse_line(line: &str) -> ((i32, i32), (i32, i32)) {
+    fn parse_interval(interval: &str) -> (i32, i32) {
+        let (l, r) = interval.split_once("-").unwrap();
+        (l.parse().unwrap(), r.parse().unwrap())
+    }
+    let (l, r) = line.split_once(",").unwrap();
+    (parse_interval(l), parse_interval(r))
+}
+
+fn contains(((l1, r1), (l2, r2)): &((i32, i32), (i32, i32))) -> bool {
+    (l1 <= l2 && r1 >= r2) || (l1 >= l2 && r1 <= r2)
+}
+
+fn overlaps(((l1, r1), (l2, r2)): &((i32, i32), (i32, i32))) -> bool {
+    !((l1 < l2 && r1 < l2) || (l1 > r2 && r1 > r2))
+}
+
 fn part1(input: String) -> String {
-    String::new()
+    input
+        .lines()
+        .map(parse_line)
+        .filter(contains)
+        .count()
+        .to_string()
 }
 
 fn part2(input: String) -> String {
-    String::new()
+    input
+        .lines()
+        .map(parse_line)
+        .filter(overlaps)
+        .count()
+        .to_string()
 }
 
 fn main() {

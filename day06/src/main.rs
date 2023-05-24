@@ -1,11 +1,25 @@
-use std::{env, fs};
+use std::{collections::HashSet, env, fs};
+
+fn solve(input: String, uniques: usize) -> usize {
+    input
+        .chars()
+        .collect::<Vec<char>>()
+        .windows(uniques)
+        .enumerate()
+        .take_while(|(_, v)| HashSet::<char>::from_iter(v.iter().cloned()).len() != uniques)
+        .last()
+        .unwrap()
+        .0
+        + uniques
+        + 1
+}
 
 fn part1(input: String) -> String {
-    String::new()
+    solve(input, 4).to_string()
 }
 
 fn part2(input: String) -> String {
-    String::new()
+    solve(input, 14).to_string()
 }
 
 fn main() {

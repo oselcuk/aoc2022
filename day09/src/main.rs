@@ -1,6 +1,6 @@
 use std::{collections::HashSet, env, fs};
 
-fn pprint(h: (i32, i32), t: (i32, i32), seen: &HashSet<(i32, i32)>) {
+fn _pprint(h: (i32, i32), t: (i32, i32), seen: &HashSet<(i32, i32)>) {
     for i in 0..5 {
         for j in 0..5 {
             print!(
